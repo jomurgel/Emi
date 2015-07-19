@@ -10,6 +10,7 @@
 		<?php
 			// Formatting based on the Underscores theme
 			// https://github.com/Automattic/_s/blob/master/archive.php
+			
 			if ( is_category() ) :
 				single_cat_title();
 
@@ -20,7 +21,7 @@
 				single_term_title();
 
 			elseif ( is_author() ) :
-				printf( __( 'Author: %s', 'themeTextDomain' ), '<span class="vcard">' . get_the_author() . '</span>' );
+				printf( __( 'Author: %s', 'themeTextDomain' ), '<span class="vcard" itemprop="name">' . get_the_author() . '</span>' );
 
 			elseif ( is_day() ) :
 				printf( __( 'Day: %s', 'themeTextDomain' ), '<span>' . get_the_date() . '</span>' );
