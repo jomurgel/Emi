@@ -11,14 +11,17 @@
 	</div><!-- #main -->
 
 </div><!-- #page -->
-<footer id="footer" role="contentinfo" class="row">
+<footer id="footer" class="row" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
 	<div id="copyright" class="container">
 		&copy; <?php echo date( 'Y' ); echo '&nbsp;'; echo bloginfo( 'name' ); ?><br>
-		Site by <a href="designerURI" target="_blank" rel="nofollow">themeDesigner</a> &amp;
-		<a href="authorURI" target="_blank" rel="nofollow">themeAuthor</a>
+		Design by <a href="designerURI" target="_blank" rel="nofollow">themeDesigner</a>.  
+		Built by <a href="authorURI" target="_blank" rel="nofollow">themeAuthor</a>
 	</div>
 </footer><!-- #colophon -->
 
 <?php wp_footer(); ?>
+
+<?php get_template_part( 'inc/analytics' ); // track your stuff ?>
+
 </body>
 </html>
