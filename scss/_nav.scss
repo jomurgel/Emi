@@ -5,6 +5,13 @@
 		overflow: hidden;
 		position: relative;
 		width: 100%;
+        @include transition(all, 0.5s, ease-in-out);
+		
+		// remove with menu to show nav
+		@include breakpoint($s) {
+			max-height:0;
+			overflow: hidden;
+		}
 	}
 	ul {
 		clear: left;
@@ -36,7 +43,111 @@
 			// }
 		}
 		
-		
 	}
 	
+}
+
+/************************************************************************
+ Hamburger Inspired by Call Me Nick tutorial: http://callmenick.com/post/animating-css-only-hamburger-menu-icons
+
+ Mobile Menu built with lightweight javascript menu: https://github.com/jomurgel/Sliding-Nav
+************************************************************************/
+#menu-toggle {
+    position: relative;
+    display: none;
+    float:right;
+    @include transition(all, 0.3s, ease-in-out);
+    color: transparent; // hide where text-indent isn't the answer
+
+    
+    &.active {
+		
+        &:hover, 
+        &:active, 
+        &:focus {
+            text-decoration: none;
+            outline: none; 
+        }
+        
+        & span {
+	        background: none;
+	        
+	        &::before,
+	        &::after {
+				transition-delay: 0s, 0.3s;
+	        }
+	        
+	        &::before {
+		        @include rotate(45deg);
+		        background: #ccc;
+				display: block;
+				top: 0px;
+	        }
+	        
+	        &::after {
+		        background: #ccc;
+		        @include rotate(-45deg);
+		        bottom: 0px;
+	        }
+        }
+    }
+    
+    & span {
+	  	transition: background 0s 0.3s;
+	}
+	
+	& span::before,
+	& span::after {
+	  	transition-duration: 0.3s, 0.3s;
+	  	transition-delay: 0.3s, 0s;
+	}
+	
+	& span::before {
+	  	transition-property: top, transform;
+	}
+	
+	& span::after {
+	  	transition-property: bottom, transform;
+	}
+    
+	& span {
+		position: absolute;
+		top: 20px;
+		right: 0;
+		display: block;
+		height: 5px;
+		background: black;
+	}
+	
+	& span::before,
+	& span::after {
+		position: absolute;
+		display: block;
+		left: 0;
+		width: 100%;
+		height: 5px;
+		background-color: black;
+		content: "";
+	}
+	
+	& span::before {
+		top: -10px;
+	}
+	
+	& span::after {
+		bottom: -10px;
+	}
+
+    @include breakpoint($s) {
+        display: inline-block;
+        outline: none;
+        border: 0;
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+    } 
+}
+
+.expand {
+    max-height: 30em !important; 
 }
