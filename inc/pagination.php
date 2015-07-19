@@ -6,6 +6,5 @@
  */
 ?>
 <nav id="nav-below">
-	<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'themeTextDomain' ) ); ?></div>
-	<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'themeTextDomain' ) ); ?></div>
+	<?php themeFunction_pagination(); //no plugin required ?>
 </nav><!-- #nav-above -->
