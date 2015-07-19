@@ -1,3 +1,5 @@
+<!-- Easy Branded Downtime Using Maintenance Mode: http://zoerooney.com/blog/tutorials/easy-branded-downtime-using-maintenance-mode-503-php-in-wordpress/ -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
