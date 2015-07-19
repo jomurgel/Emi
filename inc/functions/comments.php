@@ -35,7 +35,7 @@ function themeFunction_comment( $comment, $args, $depth ) {
 						/* translators: 1: comment author, 2: date and time */
 						printf( __( '%1$s %2$s', 'themeTextDomain' ),
 							sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
-							sprintf( '<time pubdate datetime="%2$s">%3$s</time>',
+							sprintf( '<time pubdate datetime="%2$s" itemprop="datePublished">%3$s</time>',
 								esc_url( get_comment_link( $comment->comment_ID ) ),
 								get_comment_time( 'c' ),
 								/* translators: 1: date, 2: time */
