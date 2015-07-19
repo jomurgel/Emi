@@ -1,14 +1,12 @@
-Emi Starter Theme
+Emijo Starter Theme 
 =================
 
-This is a clean WordPress starter theme cobbled together from a variety of resources over multiple years. Emi is intended to be used as a starting point for other WordPress themes, it is not meant to be a stand-alone theme in itself.
-
-If you want to get even more automated, there's also a Yeoman generator that configures Emi for you: https://github.com/zoerooney/yo-emi
+This is a clean WordPress starter theme based on the Emi starter theme.  A solid starting point when thinking about structure, SEO and other functionality.
 
 
 Set Up
 ------------
-I use [String Replacer](http://www.tensionsoftware.com/osx/stringreplacer/) (a Mac app) to find and replace the following strings, keeping the same general format as shown:
+Find and replace the following strings, keeping the same general format as shown:
 
 `themeName` > `Theme Name`
 
@@ -20,17 +18,33 @@ I use [String Replacer](http://www.tensionsoftware.com/osx/stringreplacer/) (a M
 
 There are additional variables in `scss/styles.scss` you'll want to update one at a time, and a few in `footer.php` as well.
 
+If you want to get even more automated, there's also a Yeoman generator that configures Emijo for you: https://github.com/jomurgel/yo-emi
+
+
 Workflow
 ------------
+Install [Gulp](http://gulpjs.com/) to automate the following tasks:
+
+From terminal
+```
+$ cd themefolderlocation
+
+$ npm install gulp
+
+$ npm install gulp-autoprefixer gulp-ruby-sass gulp-minify-css gulp-livereload
+```
+If errors occur, try `sudo` before `npm`.
+
 This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 * Sass preprocessing
 * Auto browser prefixing (via [Autoprefixer](https://github.com/ai/autoprefixer))
 * Minifying CSS
-
-It also watches changes to files for use with [LiveReload](http://livereload.com/)
+* [LiveReload](http://livereload.com/)
 
 Changelog
 ------------
-1.2 Updated variables  
+2.2 Updated screenshot.png and added Apple Icon, Favicon and Windows Icon Support
+2.1 Added pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
+2.0 Added Schema, Google Fonts/Typekit support 
 1.1 General cleanup and tidying  
 1.0 Initial public release
