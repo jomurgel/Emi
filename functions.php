@@ -18,6 +18,35 @@ if ( ! isset( $content_width ) )
 /* THEME SETUP
  ========================== */
  
+// add title tag 
+function custom_wp_title( $title, $sep ) {
+	global $paged, $page;
+
+	if ( is_feed() ) {
+		return $title;
+	} // end if
+
+	// Add the site name.
+	$title .= get_bloginfo( 'name' );
+
+	// Add the site description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
+		$title = "$title $sep $site_description";
+	} // end if
+
+	// Add a page number if necessary.
+	if ( $paged >= 2 || $page >= 2 ) {
+		$title = sprintf( __( 'Page %s', 'mayer' ), max( $paged, $page ) ) . " $sep $title";
+	} // end if
+
+	return $title;
+
+} // end mayer_wp_title
+add_filter( 'wp_title', 'custom_wp_title', 10, 2 );
+ 
+
+// theme setup 
 if ( ! function_exists( 'themeFunction_setup' ) ):
 function themeFunction_setup() {
 
@@ -48,6 +77,41 @@ endif;
 add_action( 'after_setup_theme', 'themeFunction_setup' );
 
 
+// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
+function add_slug_to_body_class($classes)
+{
+    global $post;
+    if (is_home()) {
+        $key = array_search('blog', $classes);
+        if ($key > -1) {
+            unset($classes[$key]);
+        }
+    } elseif (is_page()) {
+        $classes[] = sanitize_html_class($post->post_name);
+    } elseif (is_singular()) {
+        $classes[] = sanitize_html_class($post->post_name);
+    }
+
+    return $classes;
+}
+add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
+
+
+// Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
+function themeFunction_pagination()
+{
+    global $wp_query;
+    $big = 999999999;
+    echo paginate_links(array(
+        'base' => str_replace($big, '%#%', get_pagenum_link($big)),
+        'format' => '?paged=%#%',
+        'current' => max(1, get_query_var('paged')),
+        'total' => $wp_query->max_num_pages
+    ));
+}
+add_action('init', 'themefunction_pagination'); // Add our HTML5 Pagination
+
+
 /* SIDEBARS & WIDGET AREAS
  ========================== */
 function themeFunction_widgets_init() {
@@ -76,15 +140,15 @@ function themeFunction_scripts() {
 	// vendor scripts
 //	wp_enqueue_script(
 //		'vendor',
-//		get_template_directory_uri() . '/assets/vendor/newscript.js',
+//		get_template_directory_uri() . '/assets/vendor/custom.js', '', '', true // enqueue in footer,
 //		array('jquery')
 //	);
 	// theme scripts
-//	wp_enqueue_script(
-//		'theme-init',
-//		get_template_directory_uri() . '/assets/theme.js',
-//		array('jquery')
-//	);
+	wp_enqueue_script(
+		'theme-init',
+		get_template_directory_uri() . '/assets/theme.js', '', '', true // enqueue in footer,
+		array('jquery')
+	);
 }    
 add_action('wp_enqueue_scripts', 'themeFunction_scripts');
 
@@ -92,9 +156,45 @@ add_action('wp_enqueue_scripts', 'themeFunction_scripts');
 /* MISC EXTRAS
  ========================== */
  
+// add a favicon to your ala http://realfavicongenerator.net/
+function themeFunction_favicon() { ?>
+	<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri(); ?>/assets/icons/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/icons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/icons/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/icons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/assets/icons/manifest.json">
+	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/icons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/assets/icons/mstile-144x144.png">
+	<meta name="msapplication-config" content="<?php echo get_template_directory_uri(); ?>/assets/icons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+<?php }
+add_action('wp_head', 'themeFunction_favicon');
+
+// Schema (http://www.schema.org)
+include('inc/functions/schema.php');
+ 
 // Comments & pingbacks display template
 include('inc/functions/comments.php');
 
+// Custom Post Types + Taxonomies + Walkers
+include('inc/functions/custom.php');
+
 // Optional Customizations
-// Includes: TinyMCE tweaks, admin menu & bar settings, query overrides
+// Includes: TinyMCE tweaks, admin menu & bar settings, query overrides + Google Fonts/Typekit Support
 include('inc/functions/customizations.php');
+
+/* ACF Delete if unecessary
+ ========================== */
+ 
+ 
+ ?>
