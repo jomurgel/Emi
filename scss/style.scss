@@ -18,8 +18,8 @@ Text Domain: themeTextDomain
 /* RESET & BASE
 ------------------ */
 @import "reset";
-@import "mixins";
 @import "base";
+@import "mixins";
 
 /* =LAYOUTS
 ------------------ */
@@ -32,6 +32,7 @@ Text Domain: themeTextDomain
 ------------------ */
 @import "typography";
 @import "forms";
+@import "buttons";
 
 /* =COMPONENTS
 ------------------ */
