@@ -44,7 +44,11 @@ This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 Changelog
 ------------
 2.2 Updated screenshot.png and added Apple Icon, Favicon and Windows Icon Support
+
 2.1 Added pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
+
 2.0 Added Schema, Google Fonts/Typekit support 
+
 1.1 General cleanup and tidying  
+
 1.0 Initial public release
