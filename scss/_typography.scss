@@ -5,6 +5,10 @@ body, input, textarea {
 	line-height: 1.625;
 }
 
+button, input, select, textarea {
+	@include transition(all, 0.3s, ease-in-out);
+}
+
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
 	clear: both;
@@ -129,7 +133,8 @@ sub {
 /* Links */
 a {
 	color: $links;
-	text-decoration: none;
+	text-decoration: none;	
+	@include transition(all, 0.3s, ease-in-out);
 	&:focus,
 	&:active,
 	&:hover {
