@@ -18,8 +18,6 @@ Find and replace the following strings, keeping the same general format as shown
 
 There are additional variables in `scss/styles.scss` you'll want to update one at a time, and a few in `footer.php` as well.
 
-If you want to get even more automated, there's also a Yeoman generator that configures Emijo for you: https://github.com/jomurgel/yo-emi
-
 
 Workflow
 ------------
