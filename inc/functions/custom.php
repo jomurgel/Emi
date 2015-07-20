@@ -2,7 +2,7 @@
 /**
  * Custom Post Types + Taxonomies + Walkers
  *
- * @package Yo_Test
+ * @package themeHandle
  */
 
 /* CUSTOM POST TYPES
