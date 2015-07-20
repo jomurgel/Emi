@@ -2,74 +2,69 @@
 /**
  * Custom Post Types + Taxonomies + Walkers
  *
- * @package themeHandle
+ * @package Yo_Test
  */
 
 /* CUSTOM POST TYPES
  ========================== */
-/*
-register_post_type( 'custom-post-type',
-	array(
-      'public' => true,
-      'has_archive' => true,
-      'menu_position' => 5, // '5' places menu item directly below Posts
-      'menu_icon' => 'dashicons-admin-home', // https://developer.wordpress.org/resource/dashicons/
-      'taxonomies' => array('custom-tax'), // associates with custom taxonomy
-      'labels' => array(
-        'name' => __( 'Single custom-post-types' ),
-        'singular_name' => __( 'custom-post-type' ),
-        'add_new' => __( 'Add New' ),
-        'add_new_item' => __( 'Add New custom-post-type' ),
-        'edit' => __( 'Edit' ),
-        'edit_item' => __( 'Edit custom-post-type' ),
-        'new_item' => __( 'New custom-post-type' ),
-        'view' => __( 'View custom-post-type' ),
-        'view_item' => __( 'View custom-post-type' ),
-        'search_items' => __( 'Search custom-post-types' ),
-        'not_found' => __( 'No custom-post-types found' ),
-        'not_found_in_trash' => __( 'No custom-post-types found in Trash' ),
-        'parent' => __( 'Parent custom-post-type' ),
-        ),
-    )
-);
-*/
+function my_custom_post_product() {
+  $labels = array(
+    'name'               => _x( 'Products', 'post type general name' ),
+    'singular_name'      => _x( 'Product', 'post type singular name' ),
+    'add_new'            => _x( 'Add New', 'book' ),
+    'add_new_item'       => __( 'Add New Product' ),
+    'edit_item'          => __( 'Edit Product' ),
+    'new_item'           => __( 'New Product' ),
+    'all_items'          => __( 'All Products' ),
+    'view_item'          => __( 'View Product' ),
+    'search_items'       => __( 'Search Products' ),
+    'not_found'          => __( 'No products found' ),
+    'not_found_in_trash' => __( 'No products found in the Trash' ), 
+    'parent_item_colon'  => '',
+    'menu_name'          => 'Products'
+  );
+  $args = array(
+    'labels'        => $labels,
+    'description'   => 'Holds our products and product specific data',
+    'public'        => true,
+    'menu_position' => 5, // '5' places menu item directly below Posts
+	'menu_icon' => 'dashicons-admin-home', // https://developer.wordpress.org/resource/dashicons/
+	'taxonomies' => array('play'), // associates with custom taxonomy  
+    'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+    'has_archive'   => true,
+  );
+  register_post_type( 'product', $args ); 
+}
+add_action( 'init', 'my_custom_post_product' );
+
 
 
 /* TAXONOMIES
  ========================== */
-/*
-function create_nonhierarchical_taxonomy() {
-// Labels part for the GUI
-  $labels = array(
-    'name' => _x( 'custom-tax', 'taxonomy general name' ),
-    'singular_name' => _x( 'custom-tax', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search custom-tax' ),
-    'popular_items' => __( 'Popular custom-tax' ),
-    'all_items' => __( 'All custom-tax' ),
-    'parent_item' => null,
-    'parent_item_colon' => null,
-    'edit_item' => __( 'Edit custom-tax' ), 
-    'update_item' => __( 'Update custom-tax' ),
-    'add_new_item' => __( 'Add New custom-tax' ),
-    'new_item_name' => __( 'New custom-tax Name' ),
-    'separate_items_with_commas' => __( 'Separate with Commas' ), // note for typeing taxonomies
-    'add_or_remove_items' => __( 'Add or remove custom-tax' ),
-    'choose_from_most_used' => __( 'Recent custom-tax' ),
-    'menu_name' => __( 'custom-tax' ),
-  ); 
+add_action( 'init', 'my_taxonomies_product', 0 );
 
-// Now register the non-hierarchical taxonomy like tag
-  register_taxonomy('custom-tax','camp', 
-  array(
-    'hierarchical' => true,
+function my_taxonomies_product() {
+  $labels = array(
+    'name'              => _x( 'Product Categories', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Product Category', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Product Categories' ),
+    'all_items'         => __( 'All Product Categories' ),
+    'parent_item'       => __( 'Parent Product Category' ),
+    'parent_item_colon' => __( 'Parent Product Category:' ),
+    'edit_item'         => __( 'Edit Product Category' ), 
+    'update_item'       => __( 'Update Product Category' ),
+    'add_new_item'      => __( 'Add New Product Category' ),
+    'new_item_name'     => __( 'New Product Category' ),
+    'menu_name'         => __( 'Product Categories' ),
+  );
+  $args = array(
     'labels' => $labels,
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'update_count_callback' => '_update_post_term_count',
-    'query_var' => true
-  ));
-} 
-*/
+    'hierarchical' => true,
+  );
+  register_taxonomy( 'product_category', 'product', $args );
+}
+add_action( 'init', 'my_taxonomies_product', 0 );
+
 
 
 /* WALKERS
