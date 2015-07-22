@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps');
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     // newer = require('gulp-newer'),
@@ -10,13 +11,14 @@ var gulp = require('gulp'),
 // var imgDest = 'assets/images';
     
 gulp.task('styles', function(){
-	return sass('scss/') 
-		.on('error', function (err) {
+	gulp.src('scss/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass.sync().on('error', function (err) {
 			console.error('Error!', err.message);
-		})
-		.pipe(gulp.dest(''))
+		}))
 		.pipe(autoprefixer())
 		.pipe(minifycss())
+		.pipe(sourcemaps.write('.', {includeContent: false}))
 		.pipe(gulp.dest(''))
 		.pipe(livereload());
 });

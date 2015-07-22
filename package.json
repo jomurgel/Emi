@@ -1,13 +1,14 @@
 {
   "repository": {
     "type": "git",
-    "url": "https://github.com/zoerooney/Emi"
+    "url": "https://github.com/jomurgel/Emijo"
   },
   "dependencies": {
     "gulp": "*",
-    "gulp-ruby-sass": "*",
+    "gulp-sass": "*",
     "gulp-autoprefixer": "*",
     "gulp-minify-css": "*",
+    "gulp-sourcemaps": "*",
     "gulp-livereload": "*"
   }
 }
