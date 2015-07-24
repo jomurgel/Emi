@@ -45,10 +45,13 @@ This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 * Sass preprocessing
 * Auto browser prefixing (via [Autoprefixer](https://github.com/ai/autoprefixer))
 * Minifying CSS
-* [LiveReload](http://livereload.com/)
+* [LiveReload](http://livereload.com/) `$ npm gulp watch`
+* Gulp Sourcemaps
 
 Changelog
 ------------
+2.2.1 Gulpfile.js adds gulp-sourcemaps, updated package.json license.
+
 2.2 Updated screenshot.png and added Apple Icon, Favicon and Windows Icon Support
 
 2.1 Added pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
