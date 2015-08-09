@@ -24,8 +24,9 @@ Find and replace the following strings, keeping the same general format as shown
 
 `themeTextDomain` > `theme-name`
 
-There are additional variables in `scss/styles.scss` you'll want to update one at a time, and a few in `footer.php` as well.
+There is also an option to do this automatically by running `gulp generate`. This will ask a few questions about the theme and update all the required files.
 
+There are additional variables in `scss/styles.scss` you'll want to update one at a time, and a few in `footer.php` as well.
 
 Workflow
 ------------
@@ -35,9 +36,14 @@ From terminal
 ```
 $ cd themefolderlocation
 
+$ npm install
+```
+Or if that doesn't work, try a manual install of gulp and all the required plugins
+
+```
 $ npm install gulp
 
-$ npm install gulp-autoprefixer gulp-ruby-sass gulp-minify-css gulp-livereload
+$ npm install gulp-autoprefixer gulp-sass gulp-minify-css gulp-livereload gulp--prompt gulp-replace
 ```
 If errors occur, try `sudo` before `npm`.
 
