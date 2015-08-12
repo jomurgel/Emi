@@ -11,6 +11,7 @@
     "gulp-sourcemaps": "*",
     "gulp-livereload": "*",
     "gulp-replace": "*",
+    "gulp-prompt" : "*",
     "gulp-confirm": "*"
   },
   "license": "MIT"
