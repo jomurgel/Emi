@@ -96,9 +96,9 @@ gulp.task('questions', function(){
 	    }
 	    ], function(res){
 	        theme.theName = res.themename;
-			theme.theHandle = theme.theName.replace(new RegExp(find, ' '),'_');
+			theme.theHandle = theme.theName.replace(new RegExp(' '),'_');
 			theme.theFunction = theme.theHandle.toLowerCase();
-			theme.theTextDomain = theme.theFunction.replace(new RegExp(find, '_'),'-');
+			theme.theTextDomain = theme.theFunction.replace(new RegExp('_'),'-');
 			theme.uri = res.uri;
 			theme.author = res.author;
 			theme.authuri = res.authuri;
