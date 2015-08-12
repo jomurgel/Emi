@@ -67,5 +67,5 @@ show_admin_bar( false );
 /*  if ( wp_script_is( 'theme_typekit', 'done' ) ) { ?>
   	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php }
-*/}
+*/
 ?>
