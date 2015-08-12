@@ -43,7 +43,7 @@ Or if that doesn't work, try a manual install of gulp and all the required plugi
 ```
 $ npm install gulp
 
-$ npm install gulp-autoprefixer gulp-sass gulp-minify-css gulp-livereload gulp--prompt gulp-replace
+$ npm install gulp-sass gulp-autoprefixer gulp-minify-css gulp-sourcemaps gulp-livereload gulp-replace gulp-prompt
 ```
 If errors occur, try `sudo` before `npm`.
 
@@ -56,6 +56,8 @@ This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 
 Changelog
 ------------
+2.3 A great feature (gulp-replace) added by [lachieh](https://github.com/lachieh) for replacing strings such as ThemeName, etc. using gulp-generate. Thanks!
+
 2.2.1 Gulpfile.js adds gulp-sourcemaps, updated package.json license.
 
 2.2 Updated screenshot.png and added Apple Icon, Favicon and Windows Icon Support
