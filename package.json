@@ -9,7 +9,17 @@
     "gulp-autoprefixer": "*",
     "gulp-minify-css": "*",
     "gulp-sourcemaps": "*",
+<<<<<<< HEAD
     "gulp-livereload": "*"
   },
   "license": "MIT"
 }
+=======
+    "gulp-livereload": "*",
+    "gulp-replace": "*",
+    "gulp-prompt" : "*",
+    "gulp-confirm": "*"
+  },
+  "license": "MIT"
+}
+>>>>>>> cd7e2e22dbe3f3120307f1e370f64dfce3fe6186
