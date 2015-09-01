@@ -10,5 +10,6 @@
     "gulp-minify-css": "*",
     "gulp-sourcemaps": "*",
     "gulp-livereload": "*"
-  }
+  },
+  "license": "MIT"
 }
