@@ -2,6 +2,22 @@
 // Remove admin bar for all users
 show_admin_bar( false );
 
+// Remove Menu Items
+function remove_menus(){
+  // remove_menu_page( 'upload.php' );			// Media
+  // remove_menu_page( 'edit-comments.php' );	// Comments
+  // remove_menu_page( 'users.php' );			// Users
+  // remove_menu_page( 'tools.php' );			// Tools
+}
+add_action( 'admin_menu', 'remove_menus' ); // Remove pesky menu items
+
+// Rename Menu Items
+// function edit_admin_menus() {
+//     global $menu;
+// 
+//     $menu[5][0] = 'News'; // Change Posts to News
+// }
+// add_action( 'admin_menu', 'edit_admin_menus' ); // Change menu item names (posts to news)
 // Move ACF Options menu under Settings
 //if( function_exists('acf_add_options_sub_page') )
 //{
