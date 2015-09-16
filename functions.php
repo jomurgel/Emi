@@ -109,7 +109,7 @@ function themeFunction_pagination()
         'total' => $wp_query->max_num_pages
     ));
 }
-add_action('init', 'themefunction_pagination'); // Add our HTML5 Pagination
+add_action('init', 'themeFunction_pagination'); // Add our HTML5 Pagination
 
 
 /* SIDEBARS & WIDGET AREAS
