@@ -8,7 +8,7 @@
         @include transition(all, 0.5s, ease-in-out);
 		
 		// remove with menu to show nav
-		@include breakpoint($bp-small) {
+		@include breakpoint($s) {
 			max-height:0;
 			overflow: hidden;
 		}
@@ -138,7 +138,7 @@
 		bottom: -10px;
 	}
 
-    @include breakpoint($bp-small) {
+    @include breakpoint($s) {
         display: inline-block;
         outline: none;
         border: 0;

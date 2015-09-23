@@ -35,7 +35,8 @@ $susy: (
 );
 
 /* Breakpoints */
-$bp-small: 20em;
-$bp-medium: 32em;
-$bp-large: 60em;
+$cap: 1920px;
+$m: 850px;
+$s: 740px;
+$xs: 500px;
 $breakpoint-no-query-fallbacks: true;
