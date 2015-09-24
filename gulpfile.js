@@ -61,6 +61,8 @@ gulp.task('generate', ['questions'], function(){
 		.pipe(replace('themeURI', theme.uri))
 		.pipe(replace('themeAuthor', theme.author))
 		.pipe(replace('authorURI', theme.authuri))
+		.pipe(replace('themeDesigner', theme.designer))
+		.pipe(replace('designerURI', theme.desiuri))
 		.pipe(replace('themeDescription', theme.desc))
 		.pipe(gulp.dest(''));
 
@@ -82,12 +84,22 @@ gulp.task('questions', function(){
 	    {
 	        type: 'input',
 	        name: 'author',
-	        message: 'Who is the theme author?'
+	        message: 'Who is the theme developer/author?'
 	    },
 	    {
 	        type: 'input',
 	        name: 'authuri',
-	        message: 'What is the author\'s URL?'
+	        message: 'What is the developer/author\'s URL?'
+	    },
+	    {
+	        type: 'input',
+	        name: 'designer',
+	        message: 'Who is the theme designer?'
+	    },
+	    {
+	        type: 'input',
+	        name: 'desiuri',
+	        message: 'What is the theme designer\'s URL?'
 	    },
 	    {
 	        type: 'input',
@@ -102,6 +114,8 @@ gulp.task('questions', function(){
 			theme.uri = res.uri;
 			theme.author = res.author;
 			theme.authuri = res.authuri;
+			theme.designer = res.designer;
+			theme.desiuri = res.desiuri;
 			theme.desc = res.desc;
 	    }));
 
