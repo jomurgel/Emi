@@ -19,31 +19,31 @@ if ( ! isset( $content_width ) )
  ========================== */
  
 // add title tag 
-function custom_wp_title( $title, $sep ) {
-	global $paged, $page;
-
+// add title tag 
+function themeFunction_wp_title( $title, $sep ) {
 	if ( is_feed() ) {
 		return $title;
-	} // end if
+	}
 
-	// Add the site name.
-	$title .= get_bloginfo( 'name' );
+	global $page, $paged;
 
-	// Add the site description for the home/front page.
+	// Add the blog name
+	$title .= get_bloginfo( 'name', 'display' );
+
+	// Add the blog description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
 	if ( $site_description && ( is_home() || is_front_page() ) ) {
-		$title = "$title $sep $site_description";
-	} // end if
+		$title .= " $sep $site_description";
+	}
 
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 ) {
-		$title = sprintf( __( 'Page %s', 'mayer' ), max( $paged, $page ) ) . " $sep $title";
-	} // end if
+	// Add a page number if necessary:
+	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
+		$title .= " $sep " . sprintf( __( 'Page %s', '_s' ), max( $paged, $page ) );
+	}
 
 	return $title;
-
-} // end mayer_wp_title
-add_filter( 'wp_title', 'custom_wp_title', 10, 2 );
+}
+add_filter( 'wp_title', 'themeFunction_wp_title', 10, 2 );
  
 
 // theme setup 
