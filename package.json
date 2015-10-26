@@ -9,7 +9,7 @@
     "gulp-autoprefixer": "*",
     "gulp-minify-css": "*",
     "gulp-sourcemaps": "*",
-    "gulp-livereload": "*"
+    "gulp-livereload": "*",
     "gulp-replace": "*",
     "gulp-prompt" : "*",
     "gulp-confirm": "*"
