@@ -129,6 +129,21 @@ add_action( 'widgets_init', 'themeFunction_widgets_init' );
 
 /* ENQUEUE SCRIPTS & STYLES
  ========================== */
+// load jquery only once
+function load_jquery() {
+
+	// deregister the original version of jQuery
+	wp_deregister_script('jquery');
+
+	// register it again, this time with no file path
+	wp_register_script('jquery', '', true, '1.11.1');
+
+	// add it back into the queue
+	wp_enqueue_script('jquery');
+}
+
+add_action('template_redirect', 'load_jquery'); 
+
 function themeFunction_scripts() {
 	// theme style.css file
 	wp_enqueue_style( 'themeTextDomain-style', get_stylesheet_uri() );
