@@ -1,3 +1,8 @@
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 body, input, textarea {
 	color: $text;
 	font-family: $main;
