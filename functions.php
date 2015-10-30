@@ -165,7 +165,7 @@ function themeFunction_scripts() {
 	// vendor scripts
 //	wp_enqueue_script(
 //		'vendor', //script name
-//		get_template_directory_uri() . '/assets/vendor/custom.js', //script location
+//		get_template_directory_uri() . '/js/vendor/custom.js', //script location
 //		array('jquery'), //depends on jquery
 //		null, //version number
 //		true // enqueue in footer
@@ -174,7 +174,7 @@ function themeFunction_scripts() {
 	// theme scripts
 	wp_enqueue_script(
 		'theme-init', //script name
-		get_template_directory_uri() . '/assets/theme.js', //script location
+		get_template_directory_uri() . '/js/theme.js', //script location
 		array('jquery'), //depends on jquery
 		null, //version number
 		true // enqueue in footer
