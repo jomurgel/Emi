@@ -27,8 +27,16 @@ $main: sans-serif;
 /* Borders */
 $border: 1px solid #000;
 
+/* Susy Defaults */
+$susy: (
+  container: 64em,
+  columns: 12,
+  gutters: 1/6
+);
+
 /* Breakpoints */
 $cap: 1920px;
 $m: 850px;
 $s: 740px;
 $xs: 500px;
+$breakpoint-no-query-fallbacks: true;
