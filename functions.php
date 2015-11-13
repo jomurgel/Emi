@@ -62,6 +62,11 @@ function themeFunction_setup() {
 	// Add featured image support
 	add_theme_support( 'post-thumbnails' );
 	
+	// Add custom image sizes for picturefill
+	// add_image_size( 'feature_block_narrow', 750, 750, true );
+	// add_image_size( 'feature_block_medium', 450, 450, true );
+	// add_image_size( 'feature_block_wide', 300, 300, true );
+	
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
 		'comment-list',
@@ -69,9 +74,6 @@ function themeFunction_setup() {
 		'comment-form',
 		'gallery',
 	) );
-	
-	// Add custom image sizes
-	// add_image_size( 'name', 500, 300 );
 }
 endif;
 add_action( 'after_setup_theme', 'themeFunction_setup' );
@@ -148,6 +150,9 @@ function themeFunction_scripts() {
 	// theme style.css file
 	wp_enqueue_style( 'themeTextDomain-style', get_stylesheet_uri() );
 	
+	// fontawesome
+	wp_enqueue_style( 'themeTextDomain-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
+	
 	// threaded comments
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -158,30 +163,29 @@ function themeFunction_scripts() {
 		'theme-jquery', //script name
 		'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', //script location
 		array('jquery'), //depends on jquery
-		null, //version number
+		date("h:i:s"), //version number
 		true // enqueue in footer
 	);
-
-	// vendor scripts
-//	wp_enqueue_script(
-//		'vendor', //script name
-//		get_template_directory_uri() . '/js/vendor/custom.js', //script location
-//		array('jquery'), //depends on jquery
-//		null, //version number
-//		true // enqueue in footer
-//	);
 
 	// theme scripts
 	wp_enqueue_script(
 		'theme-init', //script name
 		get_template_directory_uri() . '/js/theme.js', //script location
 		array('jquery'), //depends on jquery
-		null, //version number
+		date("h:i:s"), //version number
 		true // enqueue in footer
 	);
+	
+	// responsive images scripts
+	// wp_enqueue_script(
+	// 	'theme-picturefill', //script name
+	// 	get_template_directory_uri() . '/js/vendor/picturefill.min.js', //script location
+	// 	array('jquery'), //depends on jquery
+	// 	null, //version number
+	// 	true // enqueue in footer
+	// );
 }    
 add_action('wp_enqueue_scripts', 'themeFunction_scripts');
-
 
 /* MISC EXTRAS
  ========================== */
@@ -210,21 +214,21 @@ function themeFunction_favicon() { ?>
 <?php }
 add_action('wp_head', 'themeFunction_favicon');
 
-// Schema (http://www.schema.org)
-include('inc/functions/schema.php');
- 
+add_filter('get_comment_link', 'redirect_after_comment');
+function redirect_after_comment($location)
+{
+	return preg_replace("/#comment-([\d]+)/", "", $location);
+}
 // Comments & pingbacks display template
 include('inc/functions/comments.php');
+
+// Schema (http://www.schema.org)
+include('inc/functions/schema.php');// Redirect to thank you post after comment
 
 // Custom Post Types + Taxonomies + Walkers
 include('inc/functions/custom.php');
 
-// Optional Customizations
 // Includes: TinyMCE tweaks, admin menu & bar settings, query overrides + Google Fonts/Typekit Support
 include('inc/functions/customizations.php');
 
-/* ACF Delete if unecessary
- ========================== */
- 
- 
- ?>
+?>

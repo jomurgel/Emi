@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-<section id="primary" class="col pull-left span_8">
+<section id="primary" class="container-full">
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -18,5 +18,6 @@ get_header(); ?>
 	<?php endwhile; // end of the loop. ?>
 
 </section><!-- #primary -->
+
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -7,21 +7,19 @@
 
 get_header(); ?>
 
-<section id="primary" role="main" class="col pull-left span_8">
+<section id="primary-full" class="container-fluid">
 
 	<article id="post-0" class="post error404 not-found">
-		<header class="entry-header">
-			<h1 class="entry-title"><?php _e( 'Aw, Snap!', 'themeTextDomain' ); ?></h1>
-		</header>
+		
+		<?php get_template_part('inc/parts/article-header'); ?>
 
 		<div class="entry-content">
 			<p><?php _e( 'You broke the internet.  Maybe you can search for what you&rsquo;re looking for.', 'themeTextDomain' ); ?></p>
-
-			<?php get_search_form(); ?>
+			
+			<a href="<?php echo esc_url( home_url() ); ?>/" class="btn btn-primary">Go Home</a>
 
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->
 
 </section><!-- #primary -->
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>?>
+<?php get_footer(); ?>

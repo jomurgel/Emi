@@ -3,6 +3,8 @@
 /*
 Template Name: Page Redirect
 
+ * @package themeHandle
+
  * @author		Dave Stewart
  * @email		dave@davestewart.co.uk
  * @web			www.davestewart.co.uk
@@ -45,6 +47,8 @@ if (function_exists('have_posts') && have_posts())
 					$host	= $_SERVER['HTTP_HOST'];
 					$dir	= dirname($_SERVER['PHP_SELF']);
 					$link	= "http://$host$dir/$link";
+				} else {
+					$link	= trim(strip_tags($contents));
 				}
 
 		// navigate to the link

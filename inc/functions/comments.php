@@ -21,7 +21,7 @@ function themeFunction_comment( $comment, $args, $depth ) {
 			break;
 		default :
 	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+	<li <?php comment_class('bs-example'); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment">
 			<footer class="comment-meta">
 				<div class="comment-author vcard">
@@ -56,7 +56,9 @@ function themeFunction_comment( $comment, $args, $depth ) {
 			<div class="comment-content"><?php comment_text(); ?></div>
 
 			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'themeTextDomain' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+				<?php 
+				$myclass = 'btn btn-default';
+				echo preg_replace( '/comment-reply-link/', 'comment-reply-link ' . $myclass, get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'themeTextDomain' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ), 1 ); ?>
 			</div><!-- .reply -->
 		</article><!-- #comment-## -->
 	

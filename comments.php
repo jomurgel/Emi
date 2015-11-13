@@ -10,7 +10,7 @@
  * @package themeHandle
  */
 ?>
-<div id="comments" class="row">
+<div id="comments">
 	<?php if ( post_password_required() ) : ?>
 		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'themeTextDomain' ); ?></p>
 	<?php
@@ -23,7 +23,6 @@
 	?>
 
 	<?php // You can start editing here -- including this comment! ?>
-
 	<?php if ( have_comments() ) : ?>
 
 		<ol class="commentlist">
@@ -54,20 +53,19 @@
 	
 	<?php 
 	$fields = array (
-		'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /><label for="author">Name (Required)</label></p>',
-		'email' => '<p class="comment-form-email"><input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /><label for="email">Email (Required)</label></p>',
-		'url' => '<p class="comment-form-url"><input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /><label for="url">URL</label></p>',
+		'author' => '<div class="form-group"><label for="author" class="control-label">Name (Required)</label><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></div>',
+		'email' => '<div class="form-group"><label for="email" class="control-label">Email (Required)</label><input id="email" class="form-control" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></div>',
+		'url' => '<div class="form-group"><label for="url" class="control-label">URL</label><input id="url" class="form-control" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
 	);
 	comment_form( 
 		array(
 			 'title_reply' => '<div class="comment-form-title">Leave a Comment</div>',
 			 'comment_notes_before' => '',
 			 'label_submit' => 'SUBMIT',
-			 'class_submit' => 'btn',
-			 'comment_field' => '<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>',
+			 'class_submit' => 'btn btn-default',
+			 'comment_field' => '<textarea id="comment" type="text" class="form-control" rows="8" placeholder="Add Comment" name="comment" aria-required="true" ></textarea>',
 			 'fields' => $fields
 		 ) 
-	); ?>
-	      	
+	); ?>  	
 
 </div><!-- #comments -->

@@ -19,7 +19,7 @@
 
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <title><?php wp_title(' ', true, 'right'); ?></title>
     
@@ -39,17 +39,9 @@
 </head>
  
 <body <?php body_class(); ?> itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div id="page">
-		<header id="site-header" class="row" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">            
-			<a href="<?php echo esc_url( home_url() ); ?>/" class="logo">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" onerror="this.onerror=null; this.src='<?php echo get_template_directory_uri(); ?>/assets/images/logo.png'" alt="<?php bloginfo('name'); ?>">
-			</a>
-			
-			<a href="#" id="menu-toggle" role="button"><span>Menu</span></a>
-			<nav class="access" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</nav><!-- #access -->  
-		</header><!-- #branding -->
-
-
-		<main id="main" class="row" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+	
+	<div id="page">	
+		
+		<?php get_template_part('inc/parts/header'); ?>
+	
+		<main id="main" class="" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">

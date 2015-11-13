@@ -10,24 +10,19 @@
 
 get_header(); ?>
 
-<section id="primary" role="main" class="col pull-left span_8">
+<section id="primary" class="container-full">
 
 	<?php if ( have_posts() ) : ?>
 
-		<?php get_template_part( 'inc/archive-header' ); ?>
+		<?php get_template_part( 'inc/parts/archive-header' ); ?>
 
-		<?php /* Start the Loop */ ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php get_template_part( 'content', get_post_format() ); ?>
 
 		<?php endwhile; ?>
 
-		<?php get_template_part( 'inc/pagination' ); ?>
-
-	<?php else : ?>
-
-		<?php get_template_part( 'content', 'none' ); ?>
+		<?php get_template_part( 'inc/parts/pagination' ); ?>
 
 	<?php endif; ?>
 
