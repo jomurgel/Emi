@@ -6,8 +6,9 @@ html {
 body, input, textarea {
 	color: $text;
 	font-family: $main;
-	font-size: 14px;
-	line-height: 1.625;
+	line-height: $lh;
+	font-size: $size;
+	font-weight: $weight;
 }
 
 button, input, select, textarea {
@@ -17,16 +18,22 @@ button, input, select, textarea {
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
 	clear: both;
+		// flush alignment
+		margin-top:0;
+		margin-left:0;
+		margin-right:0;
 }
 h1 {
-	
+	&.entry-title {
+		color: $brand-1;
+	}
 }
 h2 {
 	
 }
 h3 {
-	
 }
+
 h4 {
 	
 }
@@ -36,7 +43,6 @@ h5 {
 h6 {
 	
 }
-
 
 hr {
 	background-color: #ccc;
@@ -50,7 +56,9 @@ p {
 	margin-bottom: 1.5em;
 }
 ul, ol {
-	margin: 0 0 1.5em 2.5em;
+	margin: 0 0 1.5em 0;
+	list-style-position: inside;
+	
 }
 ul {
 	list-style: square;
@@ -86,10 +94,13 @@ em, i {
 blockquote {
 	font-style: italic;
 	font-weight: normal;
-	margin: 0 3em;
-}
-blockquote em, blockquote i, blockquote cite {
-	font-style: normal;
+	margin: 0 3em $end $end;
+	clear:both;
+	em,
+	i,
+	cite {
+		font-style: normal;
+	}
 }
 cite {
 	color: #666;
@@ -114,10 +125,6 @@ address {
 	display: block;
 	margin: 0 0 1.5em;
 }
-ins {
-	background: #fff9c0;
-	text-decoration: none;
-}
 sup,
 sub {
 	font-size: 10px;
@@ -133,17 +140,15 @@ sub {
 	top: .5ex;
 }
 
-
-
 /* Links */
 a {
-	color: $links;
+	color: $brand-1;
 	text-decoration: none;	
 	@include transition(all, 0.3s, ease-in-out);
 	&:focus,
 	&:active,
 	&:hover {
-		color: $hover;
+		color: $brand-4;
 	}
 }
 

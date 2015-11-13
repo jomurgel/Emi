@@ -1,11 +1,5 @@
 #site-header {
-	margin-bottom: 45px;
-	position: relative;
-	z-index: 250;
-	.logo {
-		
-	}
-	img {
-		height: auto;
-	}
+	background: $gray-lighter;
+	border-bottom: $border;
+	@include cf();
 }

@@ -1,3 +1,26 @@
+// Mixins
+
+/* Table of Contents
+==================================================
+  1 Fixed Footer
+  2 Breakpoints
+  3 IE Inline-Block
+  4 Effects
+    A Transitions
+    B Border Radius
+    C Opacity
+    D Better Clearfix
+    E Center Div
+    F Equal Padding
+    G Infinite Down
+    H Rotation
+    I IE Inline-Block
+    J Background-Size Cover
+  5 Retina Images
+  
+
+/* 1 Fixed Footer
+================================================== */
 @mixin sticky-footer($footer-height, $wrapper-selector: unquote("#wrapper"), $container-selector: unquote("#container"), $footer-selector: unquote("#footer")) {
   html, body {
     height: 100%;
@@ -12,7 +35,7 @@
     height: 100%;
     margin-bottom: -$footer-height;
     #{$container-selector} {
-      padding: 0 0 $footer-height 0;
+      padding-bottom: $footer-height;
     } 
   }
   #{$footer-selector} {
@@ -20,23 +43,59 @@
   }
 }
 
-// Breakpoints - Uses variables in _base
+
+/* 2 Breakpoints (Sass + Bootstrap)
+================================================== */
 @mixin breakpoint($point) {
-  @if $point == cap {
-    @media (min-width: $cap) { @content; } // max width
+  @if $point == bp-huge {
+    @media (min-width: $bp-huge) { @content; } // max width
   }
-  @else if $point == m {
-    @media (max-width: $m) { @content; } // landscape
+  @else if $point == bp-wide {
+    @media (max-width: $bp-wide) { @content; } // landscape
   }
-  @else if $point == s {
-    @media (max-width: $s) { @content; } // portrait
+  @else if $point == bp-medium {
+    @media (max-width: $bp-medium) { @content; } // portrait
   }
-  @else if $point == xs {
-    @media (max-width: $xs) { @content; } // mobile
+  @else if $point == bp-small {
+    @media (max-width: $bp-small) { @content; } // mobile
   }   
 }
 
-// Clearfix Mini - MINI IS BETTER
+
+/* 3 Antialiasing mode font rendering
+================================================== */
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4 Effects & Layout
+================================================== */
+// A Transitions
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+// B Border Radius
+@mixin border-radius($radiuspx) {
+	-webkit-border-radius: $radiuspx;
+	-moz-border-radius: $radiuspx;
+	border-radius: $radiuspx;
+	background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+// C Opacity	
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// D Better Clearfix
 @mixin cf() {
     &:before,
     &:after {
@@ -47,155 +106,102 @@
         clear: both;
     }
     & {
-	    *zoom: 1; // For IE 6/7 only Include this rule to trigger hasLayout and contain floats.
+      *zoom: 1; // For IE 6/7 only Include this rule to trigger hasLayout and contain floats.
     }
 }
 
-// Propper Inline-block
-@mixin inline-block() {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
-}
-
-
-/************************************************************************
- Borrowed from Bourbon: http://bourbon.io/docs/#html5-input-types
-
- Generate a variable ($all-text-inputs) with a list of all html5 input types that have a text-based input, excluding textarea.
- http://diveintohtml5.org/forms.html
-************************************************************************/
-@function assign-inputs($inputs, $pseudo: null) {
-  $list : ();
-
-  @each $input in $inputs {
-    $input: unquote($input);
-    $input: if($pseudo, $input + ":" + $pseudo, $input);
-    $list: append($list, $input, comma);
+// E Center Div
+@mixin center($axis: "both"){
+  @if $axis == "y"{
+    position:absolute;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
-
-  @return $list;
+  @if $axis == "x"{
+    position:absolute;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  @if $axis == "both"{
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }  
+  @if $axis == "none"{
+     position: relative;
+     top:auto;
+     left:auto;
+     -webkit-transform: translate(0, 0);
+     -moz-transform: translate(0, 0);
+     -ms-transform: translate(0, 0);
+     -o-transform: translate(0, 0);
+     transform: translate(0, 0);
+   }   
 }
 
-$inputs-list: 'input[type="email"]',
-              'input[type="number"]',
-              'input[type="password"]',
-              'input[type="search"]',
-              'input[type="tel"]',
-              'input[type="text"]',
-              'input[type="url"]',
+// F Equal Padding
+@mixin padding($pad) {
+    padding-top: $pad;
+    padding-bottom: $pad;
 
-              /* Webkit & Gecko may change the display of these in the future */
-              'input[type="color"]',
-              'input[type="date"]',
-              'input[type="datetime"]',
-              'input[type="datetime-local"]',
-              'input[type="month"]',
-              'input[type="time"]',
-              'input[type="week"]';
-
-/* Bare inputs */
-$all-text-inputs: assign-inputs($inputs-list);
-
-/* Hover Pseudo-class */
-$all-text-inputs-hover: assign-inputs($inputs-list, hover);
-
-/* Focus Pseudo-class */
-$all-text-inputs-focus: assign-inputs($inputs-list, focus);
-
-
-/************************************************************************
- Custom Stash (some helpful tools): https://gist.github.com/jomurgel/a457e491a475e71a4ac3
-************************************************************************/
-
-// Remove all Padding/Margins
-@mixin cleanslate() {
-	margin: 0;
-	padding: 0;
+    @include breakpoint(bp-medium) {
+        padding-top: $pad/2;
+        padding-bottom: $pad/2;
+    }
 }
 
-// Reset when moving from absolute to relative positioning
-@mixin resetabsolute() {
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+// G Infinite Down
+@mixin infinite($pad, $pad2, $mar1) {
+    padding-top: $pad;
+    padding-bottom: $pad2;
+    margin-bottom: $mar1;
+
+    @include breakpoint(bp-medium) {
+        padding-top: $pad/2;
+        padding-bottom: $pad/2;
+        margin-bottom: 0;
+    }
 }
 
-// Columns
-@mixin columns($count, $gap) {
-	-webkit-column-count: $count; /* Chrome, Safari, Opera */
-	   -moz-column-count: $count; /* Firefox */
-	   		column-count: $count;
-	-webkit-column-gap: $gap; /* Chrome, Safari, Opera */
-	   -moz-column-gap: $gap; /* Firefox */
-	   		column-gap: $gap;
-}
-
-// Rotation
+// H Rotation
 @mixin rotate($rot) {
-	-webkit-transform: rotate($rot);
-	-moz-transform: rotate($rot);
-	-o-transform: rotate($rot);
-	-ms-transform: rotate($rot);
-	transform: rotate($rot);	
+  -webkit-transform: rotate($rot);
+  -moz-transform: rotate($rot);
+  -o-transform: rotate($rot);
+  -ms-transform: rotate($rot);
+  transform: rotate($rot);	
 }
 
-// Transitions
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-    -moz-transition: $transition-property $transition-time $method;
-    -ms-transition: $transition-property $transition-time $method;
-    -o-transition: $transition-property $transition-time $method;
-    transition: $transition-property $transition-time $method;
+// I IE Inline-Block
+@mixin inline-block() {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
 }
 
-// Border Radius
-@mixin border-radius($radiuspx) {
-	-webkit-border-radius: $radiuspx;
-	-moz-border-radius: $radiuspx;
-	border-radius: $radiuspx;
-	background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+// J Background size cover 
+@mixin cover() {
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
 }
 
-	// Single side border-radius
-	@mixin border-top-radius($radius) {
-	  -webkit-border-top-right-radius: $radius;
-	  border-top-right-radius: $radius;
-	   -webkit-border-top-left-radius: $radius;
-	   border-top-left-radius: $radius;
-	   background-clip: padding-box;
-	}
-	@mixin border-right-radius($radius) {
-	  -webkit-border-bottom-right-radius: $radius;
-	  border-bottom-right-radius: $radius;
-	     -webkit-border-top-right-radius: $radius;
-	     border-top-right-radius: $radius;
-	     background-clip: padding-box;
-	}
-	@mixin border-bottom-radius($radius) {
-	  -webkit-border-bottom-right-radius: $radius;
-	  border-bottom-right-radius: $radius;
-	   -webkit-border-bottom-left-radius: $radius;
-	   border-bottom-left-radius: $radius;
-	   background-clip: padding-box;
-	}
-	@mixin border-left-radius($radius) {
-	  -webkit-border-bottom-left-radius: $radius;
-	  border-bottom-left-radius: $radius;
-	     -webkit-border-top-left-radius: $radius;
-	     border-top-left-radius: $radius;
-	     background-clip: padding-box;
-	}
-
-// Opacity	
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie); //IE8
-}
-
-// Retina Images
+/* 5 Retina Images
+================================================== */
 // background: url(assets/img/gf-nav.jpg) left center no-repeat;
 // @include image-2x("assets/img/gf-nav@2x.jpg", 47px, 31px);
 @mixin image-2x($image, $width, $height) {
@@ -209,5 +215,52 @@ $all-text-inputs-focus: assign-inputs($inputs-list, focus);
     -webkit-background-size: $width $height;
     	-moz-background-size: $width $height;
 			background-size: $width $height;
+  }
+}
+
+/* 6 Input + Buttons
+================================================== */
+// Solid and Hollow buttons mixin by the @poopsplat
+@mixin btn($background, $color) {
+  border: 2px solid rgba(255,255,255,0); // You'll want to customize this
+  color: $color;
+  background: $background;
+  padding: 5px 5% 4px 5%;
+  &:hover, &:focus, &:active {
+    color: $background;
+    background: $color;
+    border-color: $background;
+  }
+  &.hollow {
+    background: none;
+    color: $background;
+    border: 2px solid $background; // The thickness should correspond with the thickness set above
+    padding: 5px 5% 4px 5%;
+    &:hover, &:focus, &:active {
+      color: $color;
+      background: $background;
+    }
+  }
+}
+
+@mixin input($background, $color) {
+  border: 2px solid rgba(255,255,255,0); // You'll want to customize this
+  color: $color;
+  background: $background;
+  padding: 5px 2% 4px 2%;
+  &:hover, &:focus, &:active {
+    color: $background;
+    background: $color;
+    border-color: $background;
+  }
+  &.hollow {
+    background: none;
+    color: $background;
+    border: 2px solid $background; // The thickness should correspond with the thickness set above
+    padding: 5px 2% 4px 2%;
+    &:hover, &:focus, &:active {
+      color: $color;
+      background: $background;
+    }
   }
 }

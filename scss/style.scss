@@ -10,15 +10,43 @@ License URI: http://opensource.org/licenses/MIT
 Text Domain: themeTextDomain
 */
 
-/* FONTS
+/* Susy
 -------------------------- */
-// Uncomment/use this file for self-hosted web fonts
-// @import "fonts/all";
+@import "node_modules/susy/sass/susy"; // http://susydocs.oddbird.net/en/latest/
 
-/* RESET & BASE
+$susy: (
+	flow: ltr, // ltr | rtl
+	output: float, // float | isolate
+	math: fluid, // fluid | static (requires column-width)
+	column-width: false, // false | value
+	container: 100%, // length or % | auto
+	container-position: center, // left | center | right | <length> [*2] (grid padding)
+	last-flow: to,
+	columns: 12,
+	gutters: 9,
+	gutter-position: after, // before | after | split | inside | inside-static (requires column-width)
+	global-box-sizing: content-box, // content-box | border-box (affects inside/inside-static)
+	debug: (
+		image: hide, // show,hide
+		color: #d9413b,
+		output: background // background | overlay
+	),
+		use-custom: (
+		background-image: true, // look for background-image mixin
+		background-options: false, // look for background-size, -origin and -clip and other compass/bourbon mixins
+		box-sizing: true, // look for custom bix sizing mixin
+		clearfix: false, // true = look for internal clearfix before using micro clearfix
+		rem: true, // look for rem mixin
+	)
+);
+
+/* RESET 
 ------------------ */
-@import "reset";
-@import "base";
+@import "node_modules/normalize-sass/normalize";
+
+/* BASE
+------------------ */
+@import "variables";
 @import "mixins";
 
 /* =LAYOUTS
@@ -32,7 +60,6 @@ Text Domain: themeTextDomain
 ------------------ */
 @import "typography";
 @import "forms";
-@import "buttons";
 
 /* =COMPONENTS
 ------------------ */
@@ -42,15 +69,11 @@ Text Domain: themeTextDomain
 
 /* =PROJECT PAGES SPECIFIC
 ------------------ */
-@import "content";
+@import "pages/content";
+@import "sidebar";
 @import "pages/all";
-// Uncomment if you have a custom home page
-// @import "pages/home";
 
 /* =BLOG SPECIFIC
 ------------------ */
 @import "blog/paging";
-@import "blog/widgets";
 @import "blog/comments";
-@import "blog/content";
-@import "blog/comment_form";

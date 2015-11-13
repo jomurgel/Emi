@@ -1,67 +1,58 @@
-#comments-title {
-	padding: 0 0 2.6em;
+#comments {
+	margin-top:50px;
+	
+	@include breakpoint(m) {
+		margin-top:25px;
+	}
 }
-.nopassword,
-.nocomments {
-	color: $text;
-	font-size: 24px;
-	margin: 26px 0;
-}
-.commentlist {
+
+ol.commentlist {
+	@include padding(50px);
 	list-style: none;
-	margin: 0 auto;
-	width: 100%;
-	> li.comment {
-		position: relative;
+	margin: 0;
+	padding-left:0;
+	li {
+		border-top: $border;
+		padding-top: 30px;
+		margin-top: 30px;
+		&:first-child {
+			padding-top:0;
+			margin-top:0;
+			border-top: none;
+		}
 	}
-	.pingback {
-		margin: 0 0 10px;
-		padding: 10px;
-	}
-	.children {
+	ul.children {
+		padding-top:30px;
 		list-style: none;
-		margin: 0 0 10px 20px;
-		.children {
-			margin: 10px 0 10px 10px;
+		
+		@include breakpoint(m) {
+			padding: 30px 0 0 0;
+			margin: 0;
 		}
-		li.comment {
-			position: relative;
-		}
-	}
-}
-
-article.comment {
-	border-bottom: $border;
-	padding: 10px 0;
-}
-.comment-meta {
-	margin-bottom: 12px;
-	.fn,
-	time {
-		font-style: normal;
-		display: block;
-		clear: right;
-		color: $text;
-	}
-}
-.avatar {
-	float: left;
-	padding-right: 10px;
-	vertical-align: bottom;
-}
-
-.comment-content {
-	p {
-		margin-bottom: 1em;
-		&:last-of-type {
-			margin-bottom: 0;
+		li {
+			padding:15px;
+			margin: 0;
+			&:nth-child(odd) {
+				background: $gray-light;
+			}
+			&:nth-child(even) {
+				background:$gray-lighter;
+			}
 		}
 	}
 }
 
-/* Post author highlighting */
-.commentlist > li.bypostauthor, 
-.commentlist .children > li.bypostauthor {
-	border: $border;
-	padding: 5px 10px;
+textarea#comment {
+	margin-bottom: 15px;
+}
+
+.comment-author {
+	margin: 0 0 1.5em 0;
+	img {
+		margin: 0 5px 0 0;
+	}
+}
+
+#respond {
+	margin-top:15px;
 }

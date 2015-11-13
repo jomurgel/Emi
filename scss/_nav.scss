@@ -1,153 +1,171 @@
-.access {
-	margin: 0;
-	div {
-		float: left;
-		overflow: hidden;
-		position: relative;
-		width: 100%;
-        @include transition(all, 0.5s, ease-in-out);
-		
-		// remove with menu to show nav
-		@include breakpoint($s) {
-			max-height:0;
-			overflow: hidden;
-		}
-	}
-	ul {
-		clear: left;
-		padding-left: 0;
-		margin: 0 !important;
-		list-style: none;
-		li {
-			position: relative;
-			display: inline-block;
-			vertical-align: middle;
-			a {
-				display: block;
-				padding: 3px 0 3px 10px;
-				margin: 2px 0;
-				text-decoration: none;
-				cursor: pointer;
-				// uncomment if you want dividers
-				// &:after {
-				// 	content: '/';
-				// 	color: $text;
-				// }
-				&:hover,
-				&:focus {
-					color: $hover;
-				}
-			}
-			// &:last-of-type a:after {
-			// 	content: none;
-			// }
-		}
-		
-	}
+.primary-header {
+	padding: 0 15px;
+	a.logo-icon {
+		@include span(3);
+		img {
+			@include center(y);
+			padding: 15px 0 10px 0;
 	
+			@include breakpoint(bp-medium) {
+				@include center(none);
+			}
+		}
+	}
 }
 
-/************************************************************************
- Hamburger Inspired by Call Me Nick tutorial: http://callmenick.com/post/animating-css-only-hamburger-menu-icons
-
- Mobile Menu built with lightweight javascript menu: https://github.com/jomurgel/Sliding-Nav
-************************************************************************/
-#menu-toggle {
-    position: relative;
-    display: none;
-    float:right;
-    @include transition(all, 0.3s, ease-in-out);
-    color: transparent; // hide where text-indent isn't the answer
-
-    
-    &.active {
-		
-        &:hover, 
-        &:active, 
-        &:focus {
-            text-decoration: none;
-            outline: none; 
-        }
-        
-        & span {
-	        background: none;
-	        
-	        &::before,
-	        &::after {
-				transition-delay: 0s, 0.3s;
-	        }
-	        
-	        &::before {
-		        @include rotate(45deg);
-		        background: #ccc;
+.primary-menu {
+	.menu-primary-container {
+		position: relative;
+		@include transition(all, 0.5s, ease-in-out);
+	
+			// remove with menu to show nav
+			@include breakpoint(bp-medium) {
+				@include span(full);
+				max-height:0;
+				overflow: hidden;
+			}
+		&.expand {
+			border-top: $border;
+		}
+		ul.menu {
+			@include span(last 6);
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-align: right;
+			@include breakpoint(bp-medium) {
+				@include span(full);
+				text-align: left;
+			}
+			li {
+				position: relative;
+				@include inline-block();
+				
+				@include breakpoint(bp-medium) {
+					display: block;
+				}
+				a {
+					padding: 20px 15px;
+					@include inline-block();
+				}
+				&.sub {
+					margin-left:15px;
+					&::before {
+						font-family:FontAwesome;
+						content:'\f067';
+						cursor: pointer;
+						margin-right: -5px;
+					}
+					&.clicked{
+						&::before {
+							font-family:FontAwesome;
+							content:'\f068';
+							margin-right: -5px;
+						}
+					}
+				}
+			}
+			&:hover ul {
+				@include inline-block();				
+			}
+		}
+		ul.sub-menu {
+			position: absolute;
+			right: 0;
+			display: none;
+			z-index: 5;
+			background: $bg;
+			border: $border;
+			min-width: 160px;
+			
+			@include breakpoint(bp-medium) {
+				@include span(full);
+				float: none; // important;
+				position: relative;
 				display: block;
-				top: 0px;
-	        }
-	        
-	        &::after {
-		        background: #ccc;
-		        @include rotate(-45deg);
-		        bottom: 0px;
-	        }
-        }
-    }
-    
-    & span {
-	  	transition: background 0s 0.3s;
+				background: none;
+				min-width: auto;
+				padding: 0;
+				margin: 0 15px;
+				border-left: none;
+				border-right: none;
+			}
+			li {
+				width: 100%;
+				a {
+					display: block !important;
+				}
+			}
+		}
 	}
-	
-	& span::before,
-	& span::after {
-	  	transition-duration: 0.3s, 0.3s;
-	  	transition-delay: 0.3s, 0s;
-	}
-	
-	& span::before {
-	  	transition-property: top, transform;
-	}
-	
-	& span::after {
-	  	transition-property: bottom, transform;
-	}
-    
-	& span {
-		position: absolute;
-		top: 20px;
-		right: 0;
-		display: block;
-		height: 5px;
-		background: black;
-	}
-	
-	& span::before,
-	& span::after {
-		position: absolute;
-		display: block;
-		left: 0;
-		width: 100%;
-		height: 5px;
-		background-color: black;
-		content: "";
-	}
-	
-	& span::before {
-		top: -10px;
-	}
-	
-	& span::after {
-		bottom: -10px;
-	}
-
-    @include breakpoint($s) {
-        display: inline-block;
-        outline: none;
-        border: 0;
-        background: transparent;
-        text-decoration: none;
-        cursor: pointer;
-    } 
 }
 
 .expand {
-    max-height: 30em !important; 
+	max-height: 30em !important; 
+}
+
+.menu-toggle {
+	position: relative;
+	border: none;
+	display: none;
+	background: transparent !important;
+	float: right;
+	padding: 20px 15px;
+	
+	@include breakpoint(bp-medium) {
+		display: inline;
+	}
+	&:hover {
+		background: transparent !important;
+	}
+	span.text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0,0,0,0);
+		border: 0;
+	}
+	.bar {
+		display: block;
+		width: 22px;
+		height: 2px;
+		@include transition(all, 0.3s, ease-in-out);
+		background: $gray;
+		&.top-bar,
+		&.bottom-bar {
+		}
+		&.top-bar {
+			@include rotate(0);
+		}
+		&.middle-bar {
+			margin-top:4px;
+			@include opacity(1);
+		}
+		&.bottom-bar {
+			@include rotate(0); 
+			margin-top:4px;
+		}
+	}
+	&.active {
+		.bar {
+			&.top-bar,
+			&.bottom-bar {
+				@include opacity(1);
+			}
+			&.top-bar {
+				@include rotate(45deg);
+				transform-origin: 10% 10%;
+			}
+			&.middle-bar {
+				@include opacity(0);
+			}
+			&.bottom-bar {
+				@include rotate(-45deg);
+				transform-origin: 10% 90%; 
+			}
+		}
+	}
 }

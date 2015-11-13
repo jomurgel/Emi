@@ -1,0 +1,13 @@
+#secondary {
+	border-left: $border;
+	@include infinite(50px, 5050px, -5000px);
+	margin-left:-1px;
+	
+	@include breakpoint(bp-medium) {
+		border-top: $border;
+		border-left:0;
+	}
+	#searchform {
+		margin-bottom: 25px;
+	}
+}

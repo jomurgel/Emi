@@ -11,8 +11,130 @@
 
 /* =error404
 ----------------------------------------------- */
-.error404 {
-	#main #s {
-		width: 75%;
+.not-found {
+	text-align: center;
+}
+
+
+
+
+/* Hide and Show
+----------------------------------------------- */
+
+.hidden {
+	&-s {
+		@include breakpoint(bp-huge) {
+			display: block;
+		}
+		@include breakpoint(bp-wide) {
+			display: block;
+		}
+		@include breakpoint(bp-medium) {
+			display: block;
+		}
+		@include breakpoint(bp-small) {
+			display: none;
+		}
+	}
+	&-m {
+		@include breakpoint(bp-huge) {
+			display: block;
+		}
+		@include breakpoint(bp-wide) {
+			display: block;
+		}
+		@include breakpoint(bp-medium) {
+			display: none;
+		}
+		@include breakpoint(bp-small) {
+			display: block;
+		}	
+	}
+	&-w {
+		@include breakpoint(bp-huge) {
+			display: block;
+		}
+		@include breakpoint(bp-wide) {
+			display: none;
+		}
+		@include breakpoint(bp-medium) {
+			display: block;
+		}
+		@include breakpoint(bp-small) {
+			display: block;
+		}		
+	}
+	&-h {
+		@include breakpoint(bp-huge) {
+			display: none;
+		}
+		@include breakpoint(bp-wide) {
+			display: block;
+		}
+		@include breakpoint(bp-medium) {
+			display: block;
+		}
+		@include breakpoint(bp-small) {
+			display: block;
+		}		
+	}
+}
+
+.visible {
+	&-s {
+		@include breakpoint(bp-huge) {
+			display: none;
+		}
+		@include breakpoint(bp-wide) {
+			display: none;
+		}
+		@include breakpoint(bp-medium) {
+			display: none;
+		}
+		@include breakpoint(bp-small) {
+			display: block;
+		}		
+	}
+	&-m {
+		@include breakpoint(bp-huge) {
+			display: none;
+		}
+		@include breakpoint(bp-wide) {
+			display: none;
+		}
+		@include breakpoint(bp-medium) {
+			display: block;
+		}
+		@include breakpoint(bp-small) {
+			display: none;
+		}		
+	}
+	&-w {
+		@include breakpoint(bp-huge) {
+			display: none;
+		}
+		@include breakpoint(bp-wide) {
+			display: block;
+		}
+		@include breakpoint(bp-medium) {
+			display: none;
+		}
+		@include breakpoint(bp-small) {
+			display: none;
+		}		
+	}
+	&-h {
+		@include breakpoint(bp-huge) {
+			display: block;
+		}
+		@include breakpoint(bp-wide) {
+			display: none;
+		}
+		@include breakpoint(bp-medium) {
+			display: none;
+		}
+		@include breakpoint(bp-small) {
+			display: none;
+		}		
 	}
 }
