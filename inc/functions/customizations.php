@@ -127,7 +127,6 @@ add_action( 'admin_init', 'themeFunction_add_editor_styles' );
 //         </script> -->
 /* <?php }
 // add_action( 'admin_print_scripts', 'themeFunction_admin_typekit' );
-// }
 
 
 
@@ -140,15 +139,15 @@ add_action( 'admin_init', 'themeFunction_add_editor_styles' );
 //	$query_args = array(
 //		'family' => 'Open+Sans:300,400,700' // Change this font to whatever font you'd like
 //	);
- 
+
  	// A safe way to register a CSS style file for later use
 //	wp_register_style( 'google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
-	
+
 	// A safe way to add/enqueue a CSS style file to a WordPress generated page
 //	wp_enqueue_style( 'google-fonts' );
 //}
 
-
+// add_action( 'wp_enqueue_scripts', 'child_load_google_fonts' ); // Add Google Fonts Support
 
 
 // Add Typekit Support
@@ -161,5 +160,7 @@ add_action( 'admin_init', 'themeFunction_add_editor_styles' );
   	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php }
 */
+//add_action( 'wp_enqueue_scripts', 'themeFunction_typekit' ); // Add Typekit Script Support
+
 
 ?>
