@@ -1,1 +1,0 @@
-Put non-compressed images here, then run `gulp images` to compress them. The compressed files will be in the `/assets/images/` directory and your originals will stay as-is in this directory.
