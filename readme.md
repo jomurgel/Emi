@@ -3,6 +3,8 @@ Emijo Starter Theme
 
 This is a clean WordPress starter theme based on the Emi starter theme.  A solid starting point when thinking about structure, SEO and other functionality.
 
+Also built for Bootstrap, which can be found [Here](https://github.com/jomurgel/Emijo-Bootstrap).
+
 Features
 ------------
 * @media queries via [Breakpoint](http://breakpoint-sass.com/) - Right in your _mixins.scss file. 
