@@ -53,8 +53,8 @@
 	
 	<?php 
 	$fields = array (
-		'author' => '<div class="form-group"><label for="author" class="control-label">Name (Required)</label><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></div>',
-		'email' => '<div class="form-group"><label for="email" class="control-label">Email (Required)</label><input id="email" class="form-control" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></div>',
+		'author' => '<div class="form-group"><label for="author" class="control-label">Name (Required)</label><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></div>',
+		'email' => '<div class="form-group"><label for="email" class="control-label">Email (Required)</label><input id="email" class="form-control" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" aria-required="true" /></div>',
 		'url' => '<div class="form-group"><label for="url" class="control-label">URL</label><input id="url" class="form-control" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
 	);
 	comment_form( 
