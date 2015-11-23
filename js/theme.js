@@ -9,6 +9,19 @@
 			$("ul",this).toggle('slow');
 			$("li.sub").toggleClass('clicked');
 		});
+		
+		jQuery(document).ready(function($){		
+			$('.menu-toggle').on('click', function() {		
+			$('.menu-primary-container').toggleClass('expand');		
+			return false;		
+			});		
+				
+			// Menu Toggle State - Active		
+			$('.menu-toggle').on('click', function(){		
+			  	$(this).toggleClass('active');		
+			  	return false;		
+			});		
+		});
 
 		// Smooth Scroll to Anchor
 		$(function() {
