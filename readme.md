@@ -17,6 +17,7 @@ Features
 * FontAwesome baked in.
 * Favicons.
 * Picturefill.js Support
+* SVG Support
 
 Set Up
 ------------
