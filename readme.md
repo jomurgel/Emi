@@ -52,7 +52,7 @@ This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 
 Changelog
 ------------
-3.1 Added SVG support, defer javascript function.
+3.1 Added SVG support, defer javascript function, jpeg compression quality control (all in customization.php).
 
 3.0 MAJOR UPDATE.  Updated for Susy.  General cleanup and organization.  
 
