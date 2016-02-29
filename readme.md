@@ -52,6 +52,8 @@ This theme uses [Gulp](http://gulpjs.com/) to automate the following tasks:
 
 Changelog
 ------------
+3.1 Added SVG support, defer javascript function.
+
 3.0 MAJOR UPDATE.  Updated for Susy.  General cleanup and organization.  
 
 2.3 A great feature (gulp-replace) added by [lachieh](https://github.com/lachieh) for replacing strings such as ThemeName, etc. using gulp-generate. Thanks!
