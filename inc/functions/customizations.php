@@ -31,6 +31,12 @@ if ( ! is_admin() ) {
 
 
 
+// image compression quality 100%
+add_filter('jpeg_quality', function($arg){return 100;});
+add_filter( 'wp_editor_set_quality', function($arg){return 100;} );
+
+
+
 // Remove Emojis
 // remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 // remove_action( 'admin_print_styles', 'print_emoji_styles' );
